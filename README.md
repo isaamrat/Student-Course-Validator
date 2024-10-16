@@ -40,8 +40,8 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 | **Step 4:** Click on the extension icon | ![Step 4 Image](./src/assets/tutorial/4.jpg) |
 | **Step 5:** Open the extensions manager by clicking the Extensions Manager or by navigating to `chrome://extensions` | ![Step 5 Image](./src/assets/tutorial/5.jpg) |
 | **Step 6:** Enable "Developer mode" by toggling the switch in the top-right corner. | ![Step 6 Image](./src/assets/tutorial/6.jpg) |
-| **Step 7:** Enable "Developer mode" by toggling the switch in the top-right corner. | ![Step 7 Image](./src/assets/tutorial/7.jpg) |
-| **Step 8:** Enable "Developer mode" by toggling the switch in the top-right corner. | ![Step 8 Image](./src/assets/tutorial/8.jpg) |
+| **Step 7:** Click on "Load Unpacked" to add the extension. | ![Step 7 Image](./src/assets/tutorial/7.jpg) |
+| **Step 8:** Select the previously extracted extension folder. | ![Step 8 Image](./src/assets/tutorial/8.jpg) |
 | **Step 9:** From the extensions menu pin the Student Course Validator extension | ![Step 9 Image](./src/assets/tutorial/10.jpg) |
 
 
@@ -51,7 +51,7 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 |----------------------------------------|--------------------------------|
 | **Step 1:** On the advising pannel click on the "Previous Result" button to open the gradesheet of the student. | ![Step 1 Image](./src/assets/tutorial/12.jpg) |
 | **Step 2:** Upon opening the gradesheet click on "Student Course Validator" extension icon to open the extension. | ![Step 2 Image](./src/assets/tutorial/13.jpg) |
-| **Step 3:** Click on the validate button of the extension. | ![Step 3 Image](./src/assets/tutorial/14.jpg) |
+| **Step 3:** Click on the validate button of the extension. Please make sure the gradesheet is visible before clicking the validate. | ![Step 3 Image](./src/assets/tutorial/14.jpg) |
 | **Step 4:** The reports will be shown in the window. | ![Step 4 Image](./src/assets/tutorial/15.jpg) |
 
 
