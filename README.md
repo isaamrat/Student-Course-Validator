@@ -1,8 +1,9 @@
 # Student Course Validator Chrome Extension
 
-The **Student Course Validator** Chrome extension is a helpful tool for advisors of BRACU. This tool validate key advising parameters for students, including probation status, instances of multiple failures, credit limit issues, completion of prerequisite courses, and gaps in academic history affecting course retakes. Developed by Md. Khaliduzzaman Khan Samrat, it aims to enhance academic advising and support. 
+The **Student Course Validator** Chrome extension is a helpful tool for advisors of BRACU. This tool validate key advising parameters, such as probation status, instances of multiple failures, credit limit issues, completion of prerequisite courses, and gaps count in academic history affecting course retakes. Developed by Md. Khaliduzzaman Khan Samrat, it aims to enhance academic advising and support. 
 
 ##### Follow the installation guide to install this extension.
+###### Note: This tool currently only works for the 'CSE' and 'CS' programs of BRACU.
 
 ## Index
 
