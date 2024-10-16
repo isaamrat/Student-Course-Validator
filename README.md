@@ -7,16 +7,11 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 ## Index
 
 - [Student Course Validator Chrome Extension](#student-course-validator-chrome-extension)
-      - [Follow the installation guide to install this extension](#follow-the-installation-guide-to-install-this-extension)
-  - [Index](#index)
   - [Features Overview](#features-overview)
   - [Installation Guide](#extension-installation-guide)
   - [Usage Guide](#usage-guide)
   - [Security Statement for the "Student Course Validator" Extension](#security-statement-for-the-student-course-validator-extension)
   - [Development](#development)
-    - [Prerequisites:](#prerequisites)
-    - [Setup:](#setup)
-    - [Build:](#build)
 
 ## Features Overview
 
