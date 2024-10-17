@@ -1,12 +1,9 @@
-import React, { useEffect } from 'react';
-import { retakeGapAllowed } from '../data/dynamicData';
+import React, { useEffect } from "react";
+import { retakeGapAllowed } from "../data/dynamicData";
 
 const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
   const currentSemesterCourses = [];
   let rowIndx = gradeSheet.length - 3; // Start 3 rows from the end
-
-   
-
 
   // Collect courses and semester
   while (rowIndx >= 0) {
@@ -32,7 +29,7 @@ const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
     currentCoursesGap[currentSemesterCourses[i][0]] = [
       0,
       currentCoursesGap.semester,
-      currentSemesterCourses[i][1]
+      currentSemesterCourses[i][1],
     ];
   }
 
@@ -42,7 +39,7 @@ const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
       let gapCount = 0;
       let tempGradeSheetIndx = rowIndx - 1; // Adjusted to not start at the last checked index
       let foundRetake = false;
-      let foundRs = false;
+      let rsCourseCount = 0;
 
       while (tempGradeSheetIndx >= 0) {
         const temp = gradeSheet[tempGradeSheetIndx];
@@ -51,20 +48,31 @@ const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
           foundRetake = true;
           currentCoursesGap[courseCode][2] = temp[4];
         }
+
+        // Only count RS courses within the current semester
         if (["BNG103", "EMB101", "HUM103"].includes(temp[0])) {
-          foundRs = true;
-        } else if (temp[0] === "SEMESTER :") {
+          rsCourseCount += 1;
+        }
+
+        // When a new semester is found
+        if (temp[0] === "SEMESTER :") {
           gapCount += 1;
+
+          console.log(courseCode, rsCourseCount);
+          if (rsCourseCount > 2) {
+            gapCount -= 1;
+          }
+          // Check retake and RS course count before resetting
           if (foundRetake) {
-            if (foundRs) {
-              gapCount -= 1;
-            }
             currentCoursesGap[courseCode][0] = gapCount;
             currentCoursesGap[courseCode][1] = temp[1]; // Assuming temp[1] is the semester info
-            
             break;
           }
+
+          // Reset rsCourseCount for the next semester
+          rsCourseCount = 0;
         }
+
         tempGradeSheetIndx--; // Decrement index to avoid infinite loop
       }
     }
@@ -77,27 +85,26 @@ const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
       courseCode,
       totalGap: currentCoursesGap[courseCode][0],
       lastTakenSemester: currentCoursesGap[courseCode][1],
-      prevGrade: currentCoursesGap[courseCode][2]
+      prevGrade: currentCoursesGap[courseCode][2],
     }));
 
-    // useEffect to add "no issue" message only once when gapDetails is empty
-    useEffect(() => {
-      if (gapDetails.length === 0) {
-        noIssueTrackerSetter((prev) => {
-          const message = `No issue with the ${retakeGapAllowed} semester gap while retake found.`;
-          if (!prev.includes(message)) {
-            return [...prev, message]; // Add message if not already present
-          }
-          return prev; // No change if the message is already present
-        });
-      }
-    }, [gapDetails, noIssueTrackerSetter]);
+  // useEffect to add "no issue" message only once when gapDetails is empty
+  useEffect(() => {
+    if (gapDetails.length === 0) {
+      noIssueTrackerSetter((prev) => {
+        const message = `No issue with the ${retakeGapAllowed} semester gap while retake found.`;
+        if (!prev.includes(message)) {
+          return [...prev, message]; // Add message if not already present
+        }
+        return prev; // No change if the message is already present
+      });
+    }
+  }, [gapDetails, noIssueTrackerSetter]);
 
   const gapMessage =
     gapDetails.length > 0
       ? `The following courses have been taken after more than ${retakeGapAllowed} semesters:`
       : null;
-
 
   return (
     <div>
@@ -111,103 +118,104 @@ const RetakeRepeatCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
 };
 
 const GapMessage = ({ message, courses }) => (
-    <div
-      role="alert"
+  <div
+    role="alert"
+    style={{
+      border: "1px solid #e74c3c",
+      backgroundColor: "#f8d7da",
+      padding: "15px",
+      marginTop: "10px",
+      borderRadius: "8px", // Keep border radius for the outer div
+    }}
+  >
+    <div className="flex items-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-6 w-6 shrink-0 stroke-current"
+        fill="none"
+        viewBox="0 0 24 24"
+        style={{ color: "#e74c3c" }}
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+        />
+      </svg>
+      <span style={{ color: "#e74c3c" }} className="pl-2 font-bold text-md">
+        Two Semester Gap Alert!
+      </span>
+    </div>
+    <span style={{ color: "#e74c3c" }}>{message}</span>
+
+    {/* Table for Course Details */}
+    <table
       style={{
-        border: "1px solid #e74c3c",
-        backgroundColor: "#f8d7da",
-        padding: "15px",
         marginTop: "10px",
-        borderRadius: "8px", // Keep border radius for the outer div
+        width: "100%",
+        borderSpacing: 0,
+        borderCollapse: "collapse", // Use collapse for internal row borders
+        borderRadius: "10px",
+        border: "1px solid #e74c3c",
       }}
     >
-      <div className="flex items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 shrink-0 stroke-current"
-          fill="none"
-          viewBox="0 0 24 24"
-          style={{ color: "#e74c3c" }}
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth="2"
-            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-          />
-        </svg>
-        <span style={{ color: "#e74c3c" }} className="pl-2 font-bold text-md">
-          Two Semester Gap Alert!
-        </span>
-      </div>
-      <span style={{ color: "#e74c3c" }}>{message}</span>
-  
-      {/* Table for Course Details */}
-      <table
-        style={{
-          marginTop: "10px",
-          width: "100%",
-          borderSpacing: 0,
-          borderCollapse: "collapse", // Use collapse for internal row borders
-          borderRadius: "10px",
-          border: "1px solid #e74c3c",
-        }}
-      >
-        <thead>
-          <tr>
-            <th
-              style={{
-                padding: "4px",
-                fontSize: "10px",
-                textAlign: "center",
-                color: "#e74c3c",
-                borderTopLeftRadius: "8px",
-                borderRight: "1px solid #e74c3c", // Internal column border
-                borderBottom: "1px solid #e74c3c", // Row border
-              }}
-            >
-              Course
-            </th>
-            <th
-              style={{
-                padding: "4px",
-                fontSize: "10px",
-                textAlign: "center",
-                color: "#e74c3c",
-                borderRight: "1px solid #e74c3c", // Internal column border
-                borderBottom: "1px solid #e74c3c", // Row border
-              }}
-            >
-              Last Grade
-            </th>
-            <th
-              style={{
-                padding: "4px",
-                fontSize: "10px",
-                textAlign: "center",
-                color: "#e74c3c",
-                borderRight: "1px solid #e74c3c", // Internal column border
-                borderBottom: "1px solid #e74c3c", // Row border
-              }}
-            >
-              Gap (Sem)
-            </th>
-            <th
-              style={{
-                padding: "4px",
-                fontSize: "10px",
-                textAlign: "center",
-                color: "#e74c3c",
-                borderTopRightRadius: "8px",
-                borderBottom: "1px solid #e74c3c", // Row border
-              }}
-            >
-              Previously Taken
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {courses.map(({ courseCode, prevGrade,  totalGap, lastTakenSemester }) => (
+      <thead>
+        <tr>
+          <th
+            style={{
+              padding: "4px",
+              fontSize: "10px",
+              textAlign: "center",
+              color: "#e74c3c",
+              borderTopLeftRadius: "8px",
+              borderRight: "1px solid #e74c3c", // Internal column border
+              borderBottom: "1px solid #e74c3c", // Row border
+            }}
+          >
+            Course
+          </th>
+          <th
+            style={{
+              padding: "4px",
+              fontSize: "10px",
+              textAlign: "center",
+              color: "#e74c3c",
+              borderRight: "1px solid #e74c3c", // Internal column border
+              borderBottom: "1px solid #e74c3c", // Row border
+            }}
+          >
+            Last Grade
+          </th>
+          <th
+            style={{
+              padding: "4px",
+              fontSize: "10px",
+              textAlign: "center",
+              color: "#e74c3c",
+              borderRight: "1px solid #e74c3c", // Internal column border
+              borderBottom: "1px solid #e74c3c", // Row border
+            }}
+          >
+            Gap (Sem)
+          </th>
+          <th
+            style={{
+              padding: "4px",
+              fontSize: "10px",
+              textAlign: "center",
+              color: "#e74c3c",
+              borderTopRightRadius: "8px",
+              borderBottom: "1px solid #e74c3c", // Row border
+            }}
+          >
+            Previously Taken
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {courses.map(
+          ({ courseCode, prevGrade, totalGap, lastTakenSemester }) => (
             <tr key={courseCode}>
               <td
                 style={{
@@ -257,11 +265,11 @@ const GapMessage = ({ message, courses }) => (
                 {lastTakenSemester}
               </td>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-  
+          )
+        )}
+      </tbody>
+    </table>
+  </div>
+);
 
 export default RetakeRepeatCheck;
