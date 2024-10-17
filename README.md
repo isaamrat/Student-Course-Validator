@@ -34,7 +34,7 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 
 | **Steps**                              | **Image**                     |
 |----------------------------------------|--------------------------------|
-| **Step 1:** Click on latest release or [go to the download page from here](https://github.com/isaamrat/Student-Course-Validator/releases/tag/v1.0.0) | ![Step 1 Image](./src/assets/tutorial/1.jpg) |
+| **Step 1:** Click on latest release to download or [go to the download page from here](https://github.com/isaamrat/Student-Course-Validator/releases/tag/v1.0.1) | ![Step 1 Image](./src/assets/tutorial/1.jpg) |
 | **Step 2:** Download the extension zip by clicking on the zip file. | ![Step 2 Image](./src/assets/tutorial/2.jpg) |
 | **Step 3:** Extract the downloaded zip file. | ![Step 3 Image](./src/assets/tutorial/3.jpg) |
 | **Step 4:** Click on the extension icon | ![Step 4 Image](./src/assets/tutorial/4.jpg) |
