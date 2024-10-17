@@ -52,7 +52,7 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 |---------------------------------|--------------------------------------------------------------------------------------------------|
 | **1. Download the extension**   | [Download the extension from here](https://github.com/isaamrat/Student-Course-Validator/releases/tag/v1.0.1) or from latest release, file to download "Student-Course-Validator-v1.0.1.zip" |
 | **2. Extract the downloaded zip file**             | Ensure the extension files (e.g., `manifest.json`, icons, others) are ready in a folder.                                                                      |
-| **3. Add the Add-ons on firefox**           | Click the menu button (three horizontal lines) in the top right corner. Select **“Add-ons and Themes”** or press `Ctrl + Shift + A`.                                    |
+| **3. Add the Add-ons on firefox**           | Click the menu button (three horizontal lines) in the top right corner of the firefox browser. Select **“Add-ons and Themes”** or press `Ctrl + Shift + A`.                                    |
 | **4. Go to Debugging**          | Click the gear icon ⚙️ in the top right of the Add-ons Manager. Choose **“Debug Add-ons”**.                                                                       |
 | **5. Load the Add-on**          | Click **“Load Temporary Add-on...”**  In the file dialog, select the `manifest.json` file from the extracted extension folder. Click**Open**.|
 |**6. Pin the Extension**        | After adding the extension, find the extension in the toolbar. Right-click on its icon and select **“Pin to Overflow Menu”** to keep it easily accessible.|
