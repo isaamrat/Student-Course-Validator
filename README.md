@@ -8,8 +8,10 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 ## Index
 
   - [Features Overview](#features-overview)
-  - [Installation Guide](#extension-installation-guide)
+  - [Installation Guide for Chrome browser](#extension-installation-guide-for-chrome-browser)
+  - [Installation Guide for Firefox browser](#extension-installation-guide-for-firefox-browser)
   - [Usage Guide](#usage-guide)
+  - [Update Guide](#extension-update-guide)
   - [Security Statement for the "Student Course Validator" Extension](#security-statement-for-the-student-course-validator-extension)
   - [Development](#development)
 
@@ -30,7 +32,7 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 - **Semester Gap for Retake:**  
   Alerts if any courses retaken this semester have a gap of over 2 semesters (excluding the RS semester), potentially affecting academic standing and course eligibility.
 
-## Extension Installation Guide
+## Extension Installation Guide for Chrome browser
 
 | **Steps**                              | **Image**                     |
 |----------------------------------------|--------------------------------|
@@ -44,6 +46,18 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 | **Step 8:** Select the previously extracted extension folder. | ![Step 8 Image](./src/assets/tutorial/8.jpg) |
 | **Step 9:** From the extensions menu pin the Student Course Validator extension | ![Step 9 Image](./src/assets/tutorial/10.jpg) |
 
+## Extension Installation Guide for Firefox browser
+
+| **Step**                            | **Instructions**                                                                                     |
+|---------------------------------|--------------------------------------------------------------------------------------------------|
+| **1. Download the extension**   | [Download the extension from here](https://github.com/isaamrat/Student-Course-Validator/releases/tag/v1.0.1) or from latest release, file to download "Student-Course-Validator-v1.0.1.zip" |
+| **2. Extract the downloaded zip file**             | Ensure the extension files (e.g., `manifest.json`, icons, others) are ready in a folder.                                                                      |
+| **3. Add the Add-ons on firefox**           | Click the menu button (three horizontal lines) in the top right corner. Select **“Add-ons and Themes”** or press `Ctrl + Shift + A`.                                    |
+| **4. Go to Debugging**          | Click the gear icon ⚙️ in the top right of the Add-ons Manager. Choose **“Debug Add-ons”**.                                                                       |
+| **5. Load the Add-on**          | Click **“Load Temporary Add-on...”**  In the file dialog, select the `manifest.json` file from the extracted extension folder. Click**Open**.|
+|**6. Pin the Extension**        | After adding the extension, find the extension in the toolbar. Right-click on its icon and select **“Pin to Overflow Menu”** to keep it easily accessible.|
+| **6. Usage**       | For usage follow the **[Usage Guide](#usage-guide)**          |
+| **7. Note**             | This is a custom extension that is not signed by Firefox. As a result, you will need to load this extension manually each time you open the Firefox browser. Please follow the steps 3-5 to ensure the extension is loaded and ready for use. |
 
 ## Usage Guide
 
@@ -54,6 +68,14 @@ The **Student Course Validator** Chrome extension is a helpful tool for advisors
 | **Step 3:** Click on the validate button of the extension. Please make sure the gradesheet is visible before clicking the validate. | ![Step 3 Image](./src/assets/tutorial/14.jpg) |
 | **Step 4:** The reports will be shown in the window. | ![Step 4 Image](./src/assets/tutorial/15.jpg) |
 
+## Extension Update Guide
+
+| Step                            | Instructions                                                                                     |
+|---------------------------------|--------------------------------------------------------------------------------------------------|
+| **1. Download the latest version of the extension**   | **[Download the extension from here](https://github.com/isaamrat/Student-Course-Validator/releases/tag/v1.0.1)** or from latest release, file to download "Student-Course-Validator-v.....zip" |
+| **2. Extract the downloaded zip file**             | Ensure the extension files (e.g., `manifest.json`, icons, others) are ready in a folder.                                                                      |
+| **3. Remove the extension**           | Remove the existing installed extension from the browser.                                    |
+| **4. Re-install the latest version of the extension**          | For Chrome Follow this [Installation Guide for Chrome browser](#extension-installation-guide-for-chrome-browser). <br> For Firefox browser follow this [Installation Guide for Chrome browser](#extension-installation-guide-for-firefox-browser).                                                                       |
 
 ## Security Statement for the "Student Course Validator" Extension
 
