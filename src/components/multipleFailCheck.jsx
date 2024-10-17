@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { failAllowed } from '../data/dynamicData';  // Adjust the path as needed
+import { failAllowed } from "../data/dynamicData"; // Adjust the path as needed
 
-const MultipleFailCheck = ({gradeSheet, noIssueTrackerSetter }) => {
-  const  dummyGradeSheet = [
+const MultipleFailCheck = ({ gradeSheet, noIssueTrackerSetter }) => {
+  const dummyGradeSheet = [
     [
       "Course No",
       "Course Title",
@@ -169,9 +169,10 @@ const MultipleFailCheck = ({gradeSheet, noIssueTrackerSetter }) => {
   // Create an object to store the fail count and semester for each course
   const failCounts = {};
   let currentSemester = "";
+  let grdmsg = "";
 
   // Iterate over the gradeSheet
-  for (let i = 0; i < gradeSheet.length; i++) {
+  for (let i = 1; i < gradeSheet.length; i++) {
     const row = gradeSheet[i];
 
     // If we encounter a row that indicates the start of a new semester
@@ -180,12 +181,20 @@ const MultipleFailCheck = ({gradeSheet, noIssueTrackerSetter }) => {
     }
 
     // If the row has a course and grade point
-    if (row[0] && row[5] && row[0] !== "SEMESTER :" && !isNaN(row[5])) {
+    if (
+      row[0] &&
+      row[5] &&
+      row[0] !== "SEMESTER :" &&
+      row[0] !== "SEMESTER" &&
+      row[0] !== "CUMULATIVE" &&
+      !isNaN(row[5])
+    ) {
       const courseCode = row[0];
       const gradePoint = parseFloat(row[5]);
+      const grade = (row[4]).trim();
 
       // If grade point is 0 (fail), increment the fail count for that course
-      if (gradePoint === 0) {
+      if (gradePoint === 0 && grade === "F") {
         if (!failCounts[courseCode]) {
           failCounts[courseCode] = {
             failCount: 0,
